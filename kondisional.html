@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JarvisCamp | About Us</title>
+        <style>
+            .text-error {
+                color: #e94444;
+            }
+
+            .input-group {
+                display: flex;
+                gap: 4px;
+                margin-bottom: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Berlatih Kondisional</h1>
+        </header>
+        <main>
+            <article>
+                <section>
+                    <h3>Masukkan nama dan peranmu!</h3>
+                    <form action="#" id="form-conditional">
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                name="name"
+                                id="name"
+                                placeholder="Isi nama di sini"
+                            />
+                            <span id="name-error" class="text-error">* </span>
+                        </div>
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                name="role"
+                                id="role"
+                                placeholder="Isi peran di sini"
+                            />
+                            <span id="role-error" class="text-error">* </span>
+                        </div>
+                        <input type="submit" value="Mulai Permainan" />
+                    </form>
+                </section>
+                <section>
+                    <h3>Jawaban dari console game:</h3>
+                    <div id="jawaban"></div>
+                </section>
+            </article>
+        </main>
+    </body>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("form-conditional");
+            const jawaban = document.getElementById("jawaban");
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById("name").value;
+                const role = document.getElementById("role").value;
+
+                clearErrors();
+
+                const errors = [];
+
+                let hasil = "";
+
+                if (name == "") {
+                    errors.push({ id: "name", message: "Nama harus diisi." });
+                }
+
+                if (name != "" && role == "") {
+                    errors.push({
+                        id: "role",
+                        message: `Halo ${name}, Pilih peranmu untuk memulai game!`,
+                    });
+                }
+
+                if (role == "Penyihir") {
+                    hasil = `<p>Selamat datang di Dunia Werewolf, ${name}</p>`;
+                    hasil += `<p>Halo Penyihir ${name}, kamu dapat melihat siapa yang menjadi Werewolf!</p>`;
+                } else if (role == "Werewolf") {
+                    hasil = `<p>Selamat datang di Dunia Werewolf, ${name}</p>`;
+                    hasil += `<p>Halo Werewolf ${name}, kamu dapat memilih siapa yang akan kamu makan malam ini!</p>`;
+                } else if (role) {
+                    hasil = `<p>Selamat datang di Dunia Werewolf, ${name}</p>`;
+                    hasil += `<p>Halo Rakjel ${name}, kamu menjadi rakyat jelata!</p>`;
+                }
+
+                if (errors.length > 0) {
+                    errors.forEach((error) => {
+                        displayError(error.id, error.message);
+                    });
+                } else {
+                    jawaban.innerHTML = hasil;
+                }
+            });
+
+            const displayError = (id, message) => {
+                const errorElement = document.getElementById(`${id}-error`);
+                if (errorElement) errorElement.textContent = `* ${message}`;
+            };
+
+            const clearErrors = () => {
+                const errorElements = document.querySelectorAll(".text-error");
+                errorElements.forEach((errorElement) => {
+                    errorElement.textContent = "* ";
+                });
+            };
+        });
+    </script>
+</html>
