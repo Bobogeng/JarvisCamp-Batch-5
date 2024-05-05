@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JarvisCamp | Form</title>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">Login</a></li>
+                </ul>
+            </nav>
+        </header>
+        <article>
+            <h1>Buat Account Baru!</h1>
+            <section>
+                <h3>Sign Up Form</h3>
+                <form action="welcome.html" method="get">
+                    <div>
+                        <p>First Name :</p>
+                        <input type="text" name="first-name" id="first-name" />
+                    </div>
+                    <div>
+                        <p>Last Name :</p>
+                        <input type="text" name="last-name" id="last-name" />
+                    </div>
+                    <div>
+                        <p>Gender :</p>
+                        <div>
+                            <div>
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    id="male"
+                                    value="Male"
+                                />
+                                <label for="male">Male</label>
+                            </div>
+                            <div>
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    id="female"
+                                    value="Female"
+                                />
+                                <label for="female">Female</label>
+                            </div>
+                            <div>
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    id="other"
+                                    value="Other"
+                                />
+                                <label for="other">Other</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p>Nationality :</p>
+                        <select name="nationality" id="nationality">
+                            <option value="Indonesia">Indonesia</option>
+                        </select>
+                    </div>
+                    <div>
+                        <p>Language Spoken :</p>
+                        <div>
+                            <div>
+                                <input
+                                    type="checkbox"
+                                    name="language"
+                                    id="bike"
+                                    value="Bike"
+                                />
+                                <label for="bike">I have a bike</label>
+                            </div>
+                            <div>
+                                <input
+                                    type="checkbox"
+                                    name="language"
+                                    id="car"
+                                    value="Car"
+                                />
+                                <label for="car">I have a car</label>
+                            </div>
+                            <div>
+                                <input
+                                    type="checkbox"
+                                    name="language"
+                                    id="boat"
+                                    value="Boat"
+                                />
+                                <label for="boat">I have a boat</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p>Bio :</p>
+                        <textarea
+                            name="bio"
+                            id="bio"
+                            cols="30"
+                            rows="10"
+                        ></textarea>
+                    </div>
+                    <br />
+                    <input type="submit" value="Sign Up" />
+                </form>
+            </section>
+        </article>
+    </body>
+</html>

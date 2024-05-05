@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
+
+body,
+header * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    padding: 8px;
+}
+
+.navbar {
+    background-color: #e94444;
+    padding: 24px;
+}
+
+.navbar ul {
+    display: flex;
+    gap: 24px;
+    list-style-type: none;
+    text-align: center;
+    justify-content: center;
+}
+
+.navbar ul li {
+    display: inline;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 24px;
+    font-size: large;
+    font-weight: bold;
+    font-family: "Inter";
+    transition: background-color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    color: #fff;
+    background-color: #c42e2e;
+}
+
+@media (max-width: 768px) {
+    .navbar ul {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .navbar ul li a {
+        display: inline-block;
+        width: 100%;
+    }
+}
