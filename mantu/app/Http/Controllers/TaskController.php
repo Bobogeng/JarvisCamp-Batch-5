@@ -46,9 +46,9 @@ class TaskController extends Controller
         $deadline = Carbon::parse($request->deadline)->translatedFormat('d/m/Y');
 
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|min:3',
             'description' => 'nullable|string|max:5000',
-            'deadline' => 'required|date',
+            'deadline' => 'required|date_format:d/m/Y',
             'status' => 'required|in:Belum Selesai,Sedang Dikerjakan,Selesai',
             'category_id' => 'nullable|exists:categories,id',
         ]);
@@ -83,7 +83,7 @@ class TaskController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|min:3',
             'description' => 'nullable|string|max:5000',
             'deadline' => 'required|date_format:d/m/Y',
             'status' => 'required|in:Belum Selesai,Sedang Dikerjakan,Selesai',
