@@ -25,7 +25,7 @@ class TaskController extends Controller
 
     public function show(Request $request, string $id)
     {
-        $task = Task::with('category')->findOrFail($id);
+        $task = Task::findOrFail($id);
         $task['deadline'] = Carbon::parse($task['deadline'])->translatedFormat('d F Y');
 
         $sortBy = $request->query('sortBy', 'id');
@@ -126,7 +126,7 @@ class TaskController extends Controller
 
     public function list()
     {
-        $tasks = Task::with('category')->paginate(10);
+        $tasks = Task::paginate(10);
 
         foreach ($tasks as &$task) {
             $task['deadline'] = Carbon::parse($task['deadline'])->diffForHumans();
@@ -137,7 +137,7 @@ class TaskController extends Controller
 
     public function detail(Request $request, string $id)
     {
-        $task = Task::with('category')->find($id);
+        $task = Task::findOrFail($id);
         $task['deadline'] = Carbon::parse($task['deadline'])->translatedFormat('d F Y');
 
         $currentPage = $request->query('page', 1);
