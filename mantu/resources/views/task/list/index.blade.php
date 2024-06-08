@@ -26,7 +26,8 @@
                             <p class="card-text mt-3">{{ Str::limit($task->description, 40, '...') }}</p>
                         </div>
                         <div class="mt-auto">
-                            <a href="{{ route('tasks.list.show', $task->id) }}" class="btn btn-primary">Detail</a>
+                            <a href="{{ route('tasks.list.show', ['id' => $task->id, 'page' => $tasks->currentPage()]) }}"
+                                class="btn btn-primary">Detail</a>
                         </div>
                     </div>
                 </div>

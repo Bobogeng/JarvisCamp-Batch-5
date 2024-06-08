@@ -22,7 +22,19 @@
             <p class="card-text mt-3">{{ $task['description'] }}</p>
 
             <div class="mt-3">
-                <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
+                <a href="{{ route('tasks', ['sortBy' => request()->get('sortBy', 'id'), 'sortDirection' => request()->get('sortDirection', 'asc'), 'page' => request()->get('page', 1)]) }}"
+                    class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
+                <a href="{{ route('tasks.edit', ['id' => $task['id'], 'sortBy' => request()->get('sortBy', 'id'), 'sortDirection' => request()->get('sortDirection', 'asc'), 'page' => request()->get('page', 1)]) }}"
+                    class="btn btn-warning"><i class="fas fa-edit"></i>
+                    Edit</a>
+                <form
+                    action="{{ route('tasks.destroy', ['id' => $task['id'], 'sortBy' => request()->get('sortBy', 'id'), 'sortDirection' => request()->get('sortDirection', 'asc'), 'page' => request()->get('page', 1)]) }}"
+                    method="POST" style="display: inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i>
+                        Hapus</button>
+                </form>
             </div>
         </div>
     </div>

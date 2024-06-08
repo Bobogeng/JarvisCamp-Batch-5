@@ -22,7 +22,8 @@
             <p class="card-text mt-3">{{ $task['description'] }}</p>
 
             <div class="mt-3">
-                <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
+                <a href="{{ route('tasks.list', ['page' => request()->get('page', 1)]) }}"
+                    class="btn btn-secondary">Kembali</a>
             </div>
         </div>
     </div>

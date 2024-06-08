@@ -11,8 +11,9 @@
 
     <div class="card">
         <div class="card-body">
-            <a href="{{ route('tasks.create') }}" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i>
-                Tambah Data</a>
+            <a href="{{ route('tasks.create') }}" class="btn btn-sm btn-primary">
+                <i class="fas fa-plus"></i> Tambah Data
+            </a>
             <table id="table" class="table table-bordered table-hover">
                 <thead>
                     <tr>
@@ -41,7 +42,7 @@
                             }
                         @endphp
                         <tr>
-                            <td>{{ $task->id }}</td>
+                            <td>{{ ($tasks->currentPage() - 1) * $tasks->perPage() + $loop->iteration }}</td>
                             <td>{{ Str::limit($task->name, 40, '...') }}</td>
                             <td>{{ $task->deadline }}</td>
                             <td><span class="badge {{ $boxClass }}">{{ $task->status }}</span></td>
@@ -50,20 +51,22 @@
                                     {{ $task->category->name ?? 'Uncategorized' }}
                                 </span></td>
                             <td>
-                                <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-sm btn-primary"><i
-                                        class="fas fa-eye"></i> Lihat</a>
-                                <button class="btn btn-sm btn-warning edit-button"><i class="fas fa-edit"></i>
-                                    Ubah</button>
+                                <a href="{{ route('tasks.show', ['id' => $task->id, 'sortBy' => $sortBy, 'sortDirection' => $sortDirection, 'page' => $tasks->currentPage()]) }}"
+                                    class="btn btn-sm btn-primary"><i class="fas fa-eye"></i> Lihat</a>
+                                <a href="{{ route('tasks.edit', ['id' => $task->id, 'sortBy' => $sortBy, 'sortDirection' => $sortDirection, 'page' => $tasks->currentPage()]) }}"
+                                    class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Ubah</a>
                                 <form action="{{ route('tasks.destroy', $task->id) }}" method="POST"
                                     style="display: inline;">
                                     @csrf
                                     @method('DELETE')
+                                    <input type="hidden" name="page" value="{{ $tasks->currentPage() }}">
+                                    <input type="hidden" name="sortBy" value="{{ $sortBy }}">
+                                    <input type="hidden" name="sortDirection" value="{{ $sortDirection }}">
                                     <button type="submit" class="btn btn-sm btn-danger"><i
                                             class="fas fa-trash-alt"></i>
                                         Hapus</button>
                                 </form>
                             </td>
-
                         </tr>
                     @endforeach
                 </tbody>
